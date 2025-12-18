@@ -6,14 +6,20 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pool:Azure Pipelines
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/environments/dev'
+    backendServiceArm: 'clsec_target500'
+    backendAzureRmOverrideSubscriptionID: '8680294f-df2b-4dc2-9732-345e2618ae81'
+    backendAzureRmResourceGroupName: 'rg_stg'
+    backendAzureRmStorageAccountName: 'piplinestg'
+    backendAzureRmKey: 'latest.tfstate'
