@@ -8,18 +8,23 @@ trigger:
 
 pool:Azure Pipelines
 
+stages:
+- stage: CI
+  jobs:
+  - job: CIWork
+    steps:
+    - script: "Do CI work"
 steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
-
 - task: TerraformTask@5
   inputs:
     provider: 'azurerm'
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/environments/dev'
-    backendServiceArm: 'clsec_target500'
-    backendAzureRmOverrideSubscriptionID: '8680294f-df2b-4dc2-9732-345e2618ae81'
-    backendAzureRmResourceGroupName: 'rg_stg'
-    backendAzureRmStorageAccountName: 'piplinestg'
-    backendAzureRmKey: 'latest.tfstate'
+    backendAzureRmOverrideSubscriptionID: '722e98bb-a107-4d7c-8537-ba8c2f35547f'
+    backendAzureRmResourceGroupName: 'stg_rg'
+    backendAzureRmStorageAccountName: 'stgbckup'
+    backendAzureRmContainerName: 'stgcntnr'
+    backendAzureRmKey: 'dev.terraform.tfstate'
