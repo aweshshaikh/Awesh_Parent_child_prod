@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name   = "rg-todo"
-    storage_account_name  = "bckupstg"
-    container_name        = "tfstate"
+    resource_group_name   = "stg_rg"
+    storage_account_name  = "stgbckup"
+    container_name        = "stgcntnr"
     key                   = "dev.terraform.tfstate"
     
   }
@@ -17,5 +17,5 @@ terraform {
 
 provider "azurerm" {
     features {}
-    subscription_id = "8680294f-df2b-4dc2-9732-345e2618ae81"
+    subscription_id = "722e98bb-a107-4d7c-8537-ba8c2f35547f"
 }
