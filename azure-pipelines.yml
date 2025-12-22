@@ -13,8 +13,6 @@ stages:
   jobs:
   - job: CIWork
     steps:
-    - script: "Do CI work"
-steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
